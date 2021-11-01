@@ -1,82 +1,74 @@
-import './App.css';
 import Home from './components/MainBoday/Home/Home';
 import Navbar from './components/Shared/Navbar/Navbar';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from './components/Shared/Footer/Footer';
 import About from './components/MainBoday/About/About';
-import img1 from "./components/MainBoday/Header/image/travel1.jpg";
-import img2 from "./components/MainBoday/Header/image/travel2.jpg";
-import img3 from "./components/MainBoday/Header/image/travel3.jpg";
-import img4 from "./components/MainBoday/Header/image/travel1.jpg";
-import img5 from "./components/MainBoday/Header/image/travel2.jpg";
-import img6 from "./components/MainBoday/Header/image/travel4.jpg";
 import AddService from './components/MainBoday/AddService/AddService';
+import PrivateRouter from './components/Authentication/PrivateRouter/PrivateRouter';
+import Login from './components/Authentication/Login/Login';
+import { createContext, useState } from 'react';
+import ServiceAdd from './components/Dashboard/ServiceAdd/ServiceAdd';
+import MyOrder from './components/Dashboard/MyOrder/MyOrder';
+import ManageService from "./components/Dashboard/ManageService/ManageService";
+import ManageProduct from './components/Dashboard/ManageProduct/ManageProduct';
+import Contact from './components/Shared/Contact/Contact';
 
 
-export const data = [
-  {
-    "id": "1",
-    "title": "Bus",
-    "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum assumenda debitis harum dicta odio eligendi aliquid. Dolorum itaque veniam blanditiis mollitia hic beatae ex nemo, autem harum incidunt perferendis quae odit ea repudiandae temporibus iusto eius quo et dicta maiores vitae, dolor odio vero magni! Omnis eius animi distinctio provident?",
-    "img": img1
-  },
-  {
-    "id": "2",
-    "title": "Bus",
-    "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum assumenda debitis harum dicta odio eligendi aliquid. Dolorum itaque veniam blanditiis mollitia hic beatae ex nemo, autem harum incidunt perferendis quae odit ea repudiandae temporibus iusto eius quo et dicta maiores vitae, dolor odio vero magni! Omnis eius animi distinctio provident?",
-    "img": img2
-  },
-  {
-    "id": "3",
-    "title": "Bus",
-    "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum assumenda debitis harum dicta odio eligendi aliquid. Dolorum itaque veniam blanditiis mollitia hic beatae ex nemo, autem harum incidunt perferendis quae odit ea repudiandae temporibus iusto eius quo et dicta maiores vitae, dolor odio vero magni! Omnis eius animi distinctio provident?",
-    "img": img3
-  },
-  {
-    "id": "4",
-    "title": "Bus",
-    "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum assumenda debitis harum dicta odio eligendi aliquid. Dolorum itaque veniam blanditiis mollitia hic beatae ex nemo, autem harum incidunt perferendis quae odit ea repudiandae temporibus iusto eius quo et dicta maiores vitae, dolor odio vero magni! Omnis eius animi distinctio provident?",
-    "img": img4
-  },
-  {
-    "id": "5",
-    "title": "Bus",
-    "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum assumenda debitis harum dicta odio eligendi aliquid. Dolorum itaque veniam blanditiis mollitia hic beatae ex nemo, autem harum incidunt perferendis quae odit ea repudiandae temporibus iusto eius quo et dicta maiores vitae, dolor odio vero magni! Omnis eius animi distinctio provident?",
-    "img": img5
-  },
-  {
-    "id": "6",
-    "title": "Bus",
-    "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum assumenda debitis harum dicta odio eligendi aliquid. Dolorum itaque veniam blanditiis mollitia hic beatae ex nemo, autem harum incidunt perferendis quae odit ea repudiandae temporibus iusto eius quo et dicta maiores vitae, dolor odio vero magni! Omnis eius animi distinctio provident?",
-    "img": img6
-  },
-];
+
+
+export const UserContext = createContext();
 
 function App ()
 {
+  const [ loggedInUser, setLoggedInUser ] = useState( {} );
+  const [ userLogout, setUserLogout ] = useState( {} );
+  console.log( loggedInUser );
   return (
-    <Router>
-      <Navbar />
-      <div className="container-fluid">
-        <Switch>
-          <main>
-            <Route exact path="/home">
-              <Home />
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route exact path="/bookService/:id">
-              <AddService />
-            </Route>
-          </main>
-        </Switch>
-      </div>
-      <Footer />
-    </Router>
+    <UserContext.Provider value={ [ loggedInUser, setLoggedInUser, userLogout, setUserLogout ] }>
+      <Router>
+        <div className="pb-5">
+          <Navbar />
+        </div>
+        <div className="container-fluid">
+          <Switch>
+            <main>
+              <Route exact path="/home">
+                <Home />
+              </Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
+              <PrivateRouter exact path="/bookService/:id">
+                <AddService />
+              </PrivateRouter>
+
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/addService">
+                <ServiceAdd />
+              </Route>
+              <Route exact path="/myOrder">
+                <MyOrder />
+              </Route>
+              <Route exact path="/manageOrder">
+                <ManageProduct />
+              </Route>
+              <Route exact path="/manageService">
+                <ManageService />
+              </Route>
+              <Route exact path="/contact">
+                <Contact />
+              </Route>
+            </main>
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
+    </UserContext.Provider>
   );
 }
 

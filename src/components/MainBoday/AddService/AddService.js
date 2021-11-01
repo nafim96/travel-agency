@@ -1,31 +1,44 @@
-import React from 'react';
-import { data } from '../../../App';
-import { useParams, Link } from 'react-router-dom';
-
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import AddServiceDetails from '../AddServiceDetails/AddServiceDetails';
 
 
 const AddService = () =>
 {
     const { id } = useParams();
-    const queryData = data.filter( dt => dt.id === id );
-    const { img, title, description } = queryData[ 0 ];
+    const [ services, setServices ] = useState( [] );
+    const singleService = services.filter( dt => dt._id === id );
 
+    useEffect( () =>
+    {
+        fetch( "http://localhost:5000/services" )
+            .then( ( res ) => res.json() )
+            .then( ( data ) =>
+            {
+                setServices( data );
+            } );
+    }, [] );
     return (
-        <div className="container col-md-4 mt-5 pt-5 mb-5 pb-5">
-            <div className="card" style={ { width: "25rem" } }>
-                <img src={ img } className="card-img-top" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">{ title }</h5>
-                    <p className="card-text">{ description }</p>
-                    <div className="d-flex justify-content-between">
-                        <div>
-                            <Link to={ `/bookService/${ id }` } className="btn btn-primary" >Book Now</Link>
+        <div>
+            <div className="text-center p-3">
+                <h1>Discover Our Service</h1>
+                <p>Service Categories</p>
+                <div className="w-25 m-auto">
+                    { services.length === 0 && (
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only"></span>
                         </div>
-                        <div>
-                            <Link to='/' className="btn btn-primary" >Cancel</Link>
-                        </div>
-
-                    </div>
+                    ) }
+                </div>
+            </div>
+            <div className="container">
+                <div className="row">
+                    { singleService.map( ( service ) => (
+                        <AddServiceDetails
+                            key={ service._id }
+                            service={ service }
+                        ></AddServiceDetails>
+                    ) ) }
                 </div>
             </div>
         </div>
