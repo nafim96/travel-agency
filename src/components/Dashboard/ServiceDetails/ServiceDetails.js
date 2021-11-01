@@ -1,6 +1,6 @@
 import React from "react";
 
-// this props are dealing from ManageService
+
 const ServiceDetails = ( { order } ) =>
 {
     const { name, _id } = order;

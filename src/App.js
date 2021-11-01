@@ -21,10 +21,9 @@ export const UserContext = createContext();
 function App ()
 {
   const [ loggedInUser, setLoggedInUser ] = useState( {} );
-  const [ userLogout, setUserLogout ] = useState( {} );
-  console.log( loggedInUser );
+
   return (
-    <UserContext.Provider value={ [ loggedInUser, setLoggedInUser, userLogout, setUserLogout ] }>
+    <UserContext.Provider value={ [ loggedInUser, setLoggedInUser ] }>
       <Router>
         <div className="pb-5">
           <Navbar />
