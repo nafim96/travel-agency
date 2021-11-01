@@ -19,7 +19,7 @@ const Contact = () =>
         };
         reset();
 
-        fetch( "http://localhost:5000/addUserContact", {
+        fetch( "https://calm-caverns-04841.herokuapp.com/addUserContact", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

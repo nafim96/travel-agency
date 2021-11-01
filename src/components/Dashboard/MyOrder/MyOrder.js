@@ -6,7 +6,7 @@ const MyOrder = () =>
     const [ orderService, setOrderService ] = useState( [] );
     useEffect( () =>
     {
-        fetch( "http://localhost:5000/userServices" )
+        fetch( "https://calm-caverns-04841.herokuapp.com/userServices" )
             .then( ( res ) => res.json() )
             .then( ( data ) =>
             {

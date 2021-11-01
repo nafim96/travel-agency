@@ -9,7 +9,7 @@ const Service = () =>
 
     useEffect( () =>
     {
-        fetch( "http://localhost:5000/services" )
+        fetch( "https://calm-caverns-04841.herokuapp.com/services" )
             .then( ( res ) => res.json() )
             .then( ( data ) =>
             {
@@ -23,8 +23,8 @@ const Service = () =>
                 <p>Service Categories</p>
                 <div className="w-25 m-auto">
                     { services.length === 0 && (
-                        <div class="spinner-border text-success" role="status">
-                            <span class="sr-only"></span>
+                        <div className="spinner-border text-success" role="status">
+                            <span className="sr-only"></span>
                         </div>
                     ) }
                 </div>

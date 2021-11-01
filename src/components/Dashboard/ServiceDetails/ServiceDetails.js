@@ -6,7 +6,7 @@ const ServiceDetails = ( { order } ) =>
     const { name, _id } = order;
     const handleDeleteProduct = ( id ) =>
     {
-        fetch( `http://localhost:5000/deleteService/${ id }`, {
+        fetch( `https://calm-caverns-04841.herokuapp.com/deleteService/${ id }`, {
             method: "DELETE",
         } )
             .then( ( res ) => res.json() )

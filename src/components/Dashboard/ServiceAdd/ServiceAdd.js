@@ -20,7 +20,7 @@ const ServiceAdd = () =>
         };
         reset();
 
-        fetch( "http://localhost:5000/addService", {
+        fetch( "https://calm-caverns-04841.herokuapp.com/addService", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -45,7 +45,7 @@ const ServiceAdd = () =>
                 <div className="container">
                     <div>
                         <form onSubmit={ handleSubmit( onSubmit ) }>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="name">Service Name</label>
                                 { errors.name && (
                                     <span className="text-danger">This field is required</span>
@@ -54,20 +54,20 @@ const ServiceAdd = () =>
                                 <input
 
                                     type="text"
-                                    class="form-control"
+                                    className="form-control"
                                     id="name"
                                     placeholder="Enter Product Name"
                                     { ...register( "name", { required: true } ) }
                                 />
                             </div>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="description">Description</label>
                                 { errors.description && (
                                     <span className="text-danger">This field is required*</span>
                                 ) }{ " " }
                                 <br />
                                 <textarea
-                                    class="form-control"
+                                    className="form-control"
                                     id="description"
                                     { ...register( "description", { required: true } ) }
                                     cols="30"
@@ -75,28 +75,28 @@ const ServiceAdd = () =>
                                     placeholder="Description"
                                 ></textarea>
                             </div>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="chocolate">Paste Your Picture Link</label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    className="form-control"
                                     id="chocolate"
                                     placeholder="Paste Image Link"
                                     { ...register( "imageLink", { required: true } ) }
                                 />
                             </div>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="price">Price</label>
                                 <input
                                     type="number"
-                                    class="form-control"
+                                    className="form-control"
                                     id="price"
                                     placeholder="Service Price"
                                     { ...register( "price", { required: true } ) }
                                 />
                             </div>
 
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" className="btn btn-primary">
                                 Submit
                             </button>
                         </form>

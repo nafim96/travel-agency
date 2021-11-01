@@ -4,7 +4,7 @@ import ManageServiceDetails from '../ManageServiceDetails/ManageServiceDetails';
 const ManageProduct = () =>
 {
     const [ manage, setManage ] = useState( [] );
-    const url = `http://localhost:5000/userServices`;
+    const url = `https://calm-caverns-04841.herokuapp.com/userServices`;
     useEffect( () =>
     {
         fetch( url )
@@ -19,7 +19,7 @@ const ManageProduct = () =>
         <div>
             <div className="row">
                 <div className="col-md-12">
-                    <table class="table table-striped table-dark">
+                    <table className="table table-striped table-dark">
                         <thead>
                             <tr>
                                 <th scope="col">Ordered Service</th>

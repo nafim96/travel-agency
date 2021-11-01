@@ -9,14 +9,14 @@ const Items = ( { service } ) =>
 
     return (
         <div className="col-md-4 col-ms-12">
-            <div class="card text-center my-2">
+            <div className="card text-center my-2">
                 <div >
-                    <img class="card-img-top w-100 " src={ img } alt="" />
+                    <img className="card-img-top w-100 " src={ img } alt="" />
                 </div>
-                <div class="card-body ">
-                    <h3 class="text-center text-danger">{ name }</h3>
-                    <h5 class="card-title text-center">{ description }</h5>
-                    <h5 class="card-title text-center">$ { price }</h5>
+                <div className="card-body ">
+                    <h3 className="text-center text-danger">{ name }</h3>
+                    <h5 className="card-title text-center">{ description }</h5>
+                    <h5 className="card-title text-center">$ { price }</h5>
                 </div>
 
                 <div className="d-flex justify-content-center">

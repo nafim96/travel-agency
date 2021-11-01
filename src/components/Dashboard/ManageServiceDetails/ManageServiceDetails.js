@@ -7,7 +7,7 @@ const ManageServiceDetails = ( { order } ) =>
 
     const handleStatus = ( value, id ) =>
     {
-        fetch( `http://localhost:5000/updateStatus/${ id }`, {
+        fetch( `https://calm-caverns-04841.herokuapp.com/updateStatus/${ id }`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -32,7 +32,7 @@ const ManageServiceDetails = ( { order } ) =>
 
     const handleDeleteOrder = ( id ) =>
     {
-        fetch( `http://localhost:5000/deleteOrder/${ id }`, {
+        fetch( `https://calm-caverns-04841.herokuapp.com/deleteOrder/${ id }`, {
             method: "DELETE",
         } ).then( res => res.json() )
             .then( ( result ) =>
